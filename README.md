@@ -11,3 +11,10 @@ as it will only be a Frontend system.
 
 The following text is my learning journal from newest to older updates.
 
+## Journal
+
+### 12.11.2020 13:20
+
+Added the starting code with `npx create-react-app mini-notion`. I'm starting to read the [tutorial](https://fr.reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment).
+
+The code comes with a grid to implement the TicTacToe game.
