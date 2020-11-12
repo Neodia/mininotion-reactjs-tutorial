@@ -13,6 +13,48 @@ The following text is my learning journal from newest to older updates.
 
 ## Journal
 
+## 12.11.2020 14:21
+
+The tutorial talked about immutability. I already knew most of it because I had a really interesting course at school that 
+went in depth about it.
+
+I saw function components. When components only have the render function we can turn them into functions, like this : 
+
+```jsx harmony
+class Square extends React.Component {
+
+    render() {
+        return (
+            <button className="square" onClick={() => this.props.onClick()}>
+                {this.props.value}
+            </button>
+        );
+    }
+}
+```
+
+Is the same as 
+
+```jsx harmony
+function Square(props) {
+    return  (
+        <button className="square" onClick={() => props.onClick()}>
+            {props.value}
+        </button>
+    );
+}
+```
+
+The usage of both stays the same.
+
+I just finished alternating between X and O. The game is almost done. I'll implement the win condition and a play history.
+Then I'll start my Mini-Notion. 
+
+## 12.11.2020 13:56
+
+As expected the listeners are handled mostly like in VueJS. Thus I fast forwarded a bit and I am now seeing how to handle
+communication between components so the Board component can store the state of each square.
+
 ### 12.11.2020 13:30
 
 First look at the code, it seems that ReactJS follows a lot of same principles that VueJS uses. Being kind of fluent in
