@@ -13,6 +13,13 @@ The following text is my learning journal from newest to older updates.
 
 ## Journal
 
+## 12.11.2020 15:46
+
+After a break, I properly finished the tutorial. I implemented the time travel by moving all intelligence in the game component,
+and then adding each new state to a list.
+
+I'm done for now, I'll be back to start the Mini-Notion after I take care of some obligations.
+
 ## 12.11.2020 14:21
 
 The tutorial talked about immutability. I already knew most of it because I had a really interesting course at school that 
