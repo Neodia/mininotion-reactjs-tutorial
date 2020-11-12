@@ -13,6 +13,11 @@ The following text is my learning journal from newest to older updates.
 
 ## Journal
 
+### 12.11.2020 13:30
+
+First look at the code, it seems that ReactJS follows a lot of same principles that VueJS uses. Being kind of fluent in
+VueJs, the learning process should be pretty fast. The only things that seems to change, for now, is the syntax of the code.
+
 ### 12.11.2020 13:20
 
 Added the starting code with `npx create-react-app mini-notion`. I'm starting to read the [tutorial](https://fr.reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment).
