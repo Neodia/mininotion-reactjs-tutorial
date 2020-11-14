@@ -13,18 +13,34 @@ The following text is my learning journal from newest to oldest updates.
 
 ## Journal
 
-# 14.11.2020 10:22
+### 14.11.2020 15:00
+
+I can now click on the notes to properly modify them in the editor. I must add the ability to add a note and to modify the title. I'll do this and change some visual aspects to be nicer to the eye.
+
+An important note is that the "key" attribute is useful even outside of dynamic lists. The editor didn't change the note that was displayed before I added a key value to the component. That attribute helps to know when a given component has to be refreshed.
+
+### 14.11.2020 13:30
+
+I took a while to understand some notions that were not in the tutorial. 
+
+First the references. I needed them to properly focus on the correct input when adding a new one. Refs are used to replace the native "getElementById". As this is not possible, we use Refs instead. VueJs has the same utility for refs but the syntax is really different and I didn't understand the ReactJS' one at first.
+
+I also learned about "componentDidUpdate" (and others) that are basically listeners to different moments of the rendering process. VueJS has the same, as most of the stuff, so that went fast.
+
+for now I can add text blocs in the editor. The next step will be to create the notes and to properly link the notes to the text. Gonna eat something then I'll be back to work.
+
+### 14.11.2020 10:22
 
 I'm restarting to code now. For today the objective is to set most of the UI, and eventually to enable Markdown while taking notes.
 
-## 12.11.2020 15:46
+### 12.11.2020 15:46
 
 After a break, I properly finished the tutorial. I implemented the time travel by moving all intelligence in the game component,
 and then adding each new state to a list.
 
 I'm done for now, I'll be back to start the Mini-Notion after I take care of some obligations.
 
-## 12.11.2020 14:21
+### 12.11.2020 14:21
 
 The tutorial talked about immutability. I already knew most of it because I had a really interesting course at school that 
 went in depth about it.
@@ -61,7 +77,7 @@ The usage of both stays the same.
 I just finished alternating between X and O. The game is almost done. I'll implement the win condition and a play history.
 Then I'll start my Mini-Notion. 
 
-## 12.11.2020 13:56
+### 12.11.2020 13:56
 
 As expected the listeners are handled mostly like in VueJS. Thus I fast forwarded a bit and I am now seeing how to handle
 communication between components so the Board component can store the state of each square.
