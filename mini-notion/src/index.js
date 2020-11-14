@@ -148,7 +148,81 @@ class Game extends React.Component {
 
 // ========================================
 
+class Navigation extends React.Component {
+
+    render() {
+        return (
+            <div className="navigation">
+                <div>Notion</div>
+                <div>
+                    <h4>Pages</h4>
+                </div>
+            </div>
+        );
+    }
+
+}
+class Editor extends React.Component {
+
+
+    onEnterPress(event) {
+        if (event.keyCode === 13) {
+            
+        }
+    }
+
+    renderBlock() {
+        return <EditorBloc onKeyPress={this.onEnterPress} />
+    }
+
+    render() {
+        return (
+            <div className="editor">
+                {this.renderBlock()}
+            </div>
+        );
+    }
+
+}
+
+class EditorBloc extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: null
+        }
+
+        this.checkChange = this.checkChange.bind(this);
+    }
+
+    checkChange(event) {
+        this.setState({ text: event.target.value });
+    }
+
+    render() {
+        return (
+            <input type="text" className="editor-bloc" onChange={this.checkChange} onKeyDown={(event) => this.props.onKeyPress(event)}></input>
+        );
+    }
+}
+
+class Notion extends React.Component {
+
+    renderSquare(i) {
+        return <Square value={ this.props.squares[i] } onClick={ () => this.props.onClick(i) } />;
+    }
+
+    render() {
+        return (
+            <div className="notion">
+                <Navigation />
+                <Editor />
+            </div>
+        );
+    }
+}
+
 ReactDOM.render(
-<Game />,
+<Notion />,
     document.getElementById('root')
 );

@@ -1,6 +1,9 @@
-body {
+html, body {
     font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+    margin: 0px;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 ol, ul {
@@ -10,7 +13,7 @@ ol, ul {
 .board-row:after {
     clear: both;
     content: "";
-    display: table;
+    display: table; 
 }
 
 .status {
@@ -47,4 +50,31 @@ ol, ul {
 
 .game-info {
     margin-left: 20px;
+}
+
+.navigation {
+    flex-basis: 15%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-height: 100vh;
+    background: rgb(247, 246, 243) none repeat scroll 0% 0%;
+
+    padding: 10px;
+}
+
+.editor {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 10px;
+}
+
+.editor-bloc {
+    display: block;
+    width: 80%;
+    margin: auto;
+}
+
+.notion {
+    display: flex;
+    flex-direction: row;
 }
