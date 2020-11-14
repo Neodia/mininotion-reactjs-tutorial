@@ -13,6 +13,12 @@ The following text is my learning journal from newest to oldest updates.
 
 ## Journal
 
+## 14.11.2020 16:30
+
+We can now change the title and add notes. The text blocks are now prettier (they don't have any border) and the placeholders correctly indicate that we can do Markdown. The markdown isn't implemented yet tho.
+
+I'm stopping for now. The next time I'll change the style of the selected note, I'll implement the markdown and I'll change some visual stuff.
+
 ### 14.11.2020 15:00
 
 I can now click on the notes to properly modify them in the editor. I must add the ability to add a note and to modify the title. I'll do this and change some visual aspects to be nicer to the eye.

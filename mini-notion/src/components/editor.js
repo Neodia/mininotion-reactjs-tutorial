@@ -4,7 +4,10 @@ import ReactDOM from 'react-dom';
 class EditorBloc extends React.Component {    
     render() {
         return (
-            <input type="text" value={this.props.value} className="editor-bloc" onChange={this.props.onChange} onKeyDown={(event) => this.props.onKeyPress(event)}></input>
+            <input type="text" 
+                    onMouseEnter={(e) => {e.target.placeholder = "You can use basic markdown for your notes."}}
+                    onMouseLeave={(e) => {e.target.placeholder = ""}}
+                   value={this.props.value} className="editor-bloc" onChange={this.props.onChange} onKeyDown={(event) => this.props.onKeyPress(event)}></input>
         );
     }
 }
@@ -19,32 +22,13 @@ class Editor extends React.Component {
         }
 
         this.refToLast = React.createRef();
-        this.jumpTo = null
-
-        this.onEnterPress = this.onEnterPress.bind(this);
-    }
-
-    onEnterPress(event, i) {
-        if (event.keyCode === 13) {
-            let newBlocs = this.state.note.blocs;
-            newBlocs.splice(i + 1, 0, "");
-            this.setState({ blocs: newBlocs });
-
-            this.jumpTo = i + 1;
-        }
     }
 
     componentDidUpdate() {
-        if(this.jumpTo) {
+        if(this.props.jumpTo) {
             ReactDOM.findDOMNode(this.refToLast).focus();
-            this.jumpTo = null;
+            this.props.resetJumpTo();
         }
-    }
-
-    checkChange(event, i) {
-        let blocs = this.state.note.blocs;
-        blocs[i] = event.target.value;
-        this.setState({ blocs: blocs }); 
     }
 
     render() {
@@ -52,16 +36,16 @@ class Editor extends React.Component {
         const blocs = parentBlocs.map((bloc, i) => {
             return (
                 <EditorBloc value={bloc} 
-                    onChange={(event) => this.checkChange(event, i)} 
-                    ref={(inst) => {if(this.jumpTo === i) this.refToLast = inst; }} 
+                    onChange={(event) => this.props.checkChange(event, i)} 
+                    ref={(inst) => {if(this.props.jumpTo === i) this.refToLast = inst; }} 
                     key={i} 
-                    onKeyPress={(event) => this.onEnterPress(event, i)} />
+                    onKeyPress={(event) => this.props.onEnterPress(event, i)} />
             );
         });
         
         return (
             <div className="editor">
-                <div className="note-editor-title">{this.state.note.title}</div>
+               <input type="text" className="note-editor-title" value={this.props.selectedNote.title} onChange={this.props.checkChangeTitle}></input>
                 {blocs}
             </div>
         );

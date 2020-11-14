@@ -1,55 +1,10 @@
 html, body {
-    font: 14px "Century Gothic", Futura, sans-serif;
     margin: 0px;
     padding: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-}
 
-ol, ul {
-    padding-left: 30px;
-}
-
-.board-row:after {
-    clear: both;
-    content: "";
-    display: table; 
-}
-
-.status {
-    margin-bottom: 10px;
-}
-
-.square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 34px;
-}
-
-.square:focus {
-    outline: none;
-}
-
-.kbd-navigation .square:focus {
-    background: #ddd;
-}
-
-.game {
-    display: flex;
-    flex-direction: row;
-}
-
-.game-info {
-    margin-left: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .navigation {
@@ -72,6 +27,9 @@ ol, ul {
     display: block;
     width: 80%;
     margin: auto;
+
+
+    border: none;
 }
 
 .notion {
@@ -84,8 +42,39 @@ ol, ul {
     font-weight: 700;
     line-height: 1.2;
     font-size: 40px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     cursor: text;
     margin-left: 30px;
     margin-bottom: 15px;
+
+    border: none;
+}
+
+.add-note {
+    width: fit-content;   
+    height: fit-content; 
+
+    background: rgb(247, 246, 243) none repeat scroll 0% 0%;
+    border: 1px solid rgb(173, 165, 165);
+    border-radius: 3px;
+    -webkit-appearance:none;
+}
+
+.note {
+    font-size: 14px;
+    list-style-type: none;
+
+    padding: 0px;
+    margin: 0px;
+}
+
+.navigation-page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+input:placeholder-shown {
+    color:  rgba(25, 23, 17, 0.6);
 }
