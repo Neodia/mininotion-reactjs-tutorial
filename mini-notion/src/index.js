@@ -20,13 +20,17 @@ class Notion extends React.Component {
 
         let notes = [ newNote(this.lastNoteId++, "Première"), newNote(this.lastNoteId++, "Seconde") ];
         notes[0].blocs.push("Mon Texte");
-        notes[1].blocs[0] = "Super !";
+        notes[1].blocs[0] = "Premier";
+        notes[1].blocs.push("Second");
+        notes[1].blocs.push("Troisième");
+        notes[1].blocs.push("Quatrième");
         this.state = {
             notes: notes,
-            selected: notes[0]
+            selected: notes[1]
         }
 
         this.addNote = this.addNote.bind(this);
+        this.deleteNote = this.deleteNote.bind(this);
         this.checkChange = this.checkChange.bind(this);
         this.checkChangeTitle = this.checkChangeTitle.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
@@ -34,16 +38,27 @@ class Notion extends React.Component {
 
     onKeyPress(event, i) {
         if (event.keyCode === 13) {
-            let newBlocs = this.state.selected.blocs;
+            let note = this.state.selected;
+            let newBlocs = note.blocs;
             newBlocs.splice(i + 1, 0, "");
-            this.setState({ blocs: newBlocs });
+            note.blocs = newBlocs;
+            this.setState({ selected: note });
 
             this.jumpTo = i + 1;
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        } else if (event.keyCode === 8 && event.target.textContent === "") {
+            let note = this.state.selected;
+            let newBlocs = note.blocs;
+            newBlocs.splice(i, 1);
+            note.blocs = newBlocs;
+            document.activeElement.blur();
+            this.setState({ selected: note });
         }
     }
 
     checkChange(event, i) {
-        // alert( event.target.innerHTML );
         let note = this.state.selected;
         let blocs = note.blocs;
         blocs[i] = event.target.textContent;
@@ -71,17 +86,29 @@ class Notion extends React.Component {
         });
     }
 
+    deleteNote(note) {
+        let notes = this.state.notes;
+        let index = notes.findIndex(n => n.id === note.id);
+        notes.splice(index, 1);
+        this.setState({
+            notes: notes,
+            selected: index === 0 ? notes[0] : this.state.selected
+        });
+    }
+
     render() {
         return (
             <div className="notion">
                 <Navigation key={this.state.notes}
                             notes={this.state.notes} 
                             selectedNote={this.state.selected}
-                            addNote={this.addNote} 
+                            addNote={this.addNote}
+                            deleteNote={this.deleteNote}
                             onNoteClick={(note) => this.onNoteClick(note)} />
 
                 <Editor key={this.state.selected.id} 
-                        selectedNote={this.state.selected}
+                        noteTitle={this.state.selected.title}
+                        noteBlocs={this.state.selected.blocs}
                         checkChangeTitle={this.checkChangeTitle}
                         checkChange={this.checkChange}
                         onKeyPress={this.onKeyPress}

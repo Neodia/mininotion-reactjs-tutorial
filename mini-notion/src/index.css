@@ -22,9 +22,21 @@ html, body {
 }
 
 .navigation ul {
+    width: 100%;
     padding-left: 10px;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.navigation li {
+    width: 75%;
+    line-height: 1.75;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .editor {
@@ -37,10 +49,14 @@ html, body {
     display: block;
     width: 80%;
     margin: auto;
+    margin-bottom: 8px;
     color: rgb(55, 53, 47);
 
     border: none;
+    word-break: break-word;
 }
+
+.editor-bloc p { margin: 0; }
 
 .notion {
     display: flex;
@@ -59,7 +75,7 @@ html, body {
     border: none;
 }
 
-.add-note {
+.navigation-btn {
     width: fit-content;   
     height: fit-content; 
 
@@ -69,12 +85,29 @@ html, body {
     -webkit-appearance:none;
 }
 
+.navigation ul li .navigation-btn {
+    display: none;
+}
+
+.navigation ul li:hover .navigation-btn {
+    display: block;
+}
+
+.navigation ul li div{
+    width: 100%;
+    cursor: pointer;
+}
+
 li {
     list-style-type: none;
 }
 
-.heavy-note {
+.selected-note {
     font-weight: bolder;
+    background-color: lightgray;
+
+    padding-left: 5px;
+    border-radius: 25px;
 }
 
 [contentEditable=true]:hover:empty:not(:focus):before{

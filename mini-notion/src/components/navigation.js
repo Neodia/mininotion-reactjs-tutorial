@@ -8,8 +8,12 @@ class Navigation extends React.Component {
             return (
                 <li
                     key={obj.title} 
-                    onClick={() => this.props.onNoteClick(obj)}
-                    className={obj === this.props.selectedNote ? "heavy-note" : ""}>{obj.title}</li>
+                    className={obj === this.props.selectedNote ? "selected-note" : ""}>
+                        <div onClick={() => this.props.onNoteClick(obj)}>
+                            {obj.title}
+                        </div>
+                        <button className="navigation-btn" onClick={() => this.props.deleteNote(obj)}>x</button>
+                    </li>
             )
         });
         return (
@@ -18,7 +22,7 @@ class Navigation extends React.Component {
                 <div>
                     <div className="navigation-page-header">
                         <h4>PAGES</h4>
-                        <button className="add-note" onClick={() => this.props.addNote()}>+</button>
+                        <button className="navigation-btn" onClick={() => this.props.addNote()}>+</button>
                     </div>
                     <ul>
                         {notes}

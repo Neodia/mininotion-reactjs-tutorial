@@ -5,9 +5,10 @@ import { Remarkable } from 'remarkable';
 class EditorBloc extends React.Component {   
     constructor(props) {
         super(props);
+        this.ref = React.createRef();
 
         this.state = {
-            text: props.mdText
+            text: this.props.mdText
         }
 
         this.onFocus = this.onFocus.bind(this);
@@ -26,16 +27,22 @@ class EditorBloc extends React.Component {
             text: this.props.mdText
         });
     }
+
+    componentWillReceiveProps(props) {
+        if(this.props !== props && this.ref.current !== document.activeElement)
+            this.setState({ text: props.text !== "" ? props.mdText : "" });
+    }
     
     render() {
         return (
-            <div    data-text="You can use basic markdown for your notes."
+            <div    ref={this.ref}
+                    data-text="You can use basic markdown for your notes."
                     contentEditable={true}
-                    dangerouslySetInnerHTML={ this.state.text } 
+                    dangerouslySetInnerHTML={ {__html: this.state.text} } 
                     className="editor-bloc" 
-                    onInput={this.props.onChange}
                     onFocus={this.onFocus}
                     onBlur={this.onFocusLeave}
+                    onInput={this.props.onChange}
                     onKeyDown={this.props.onKeyPress}></div>
         );
     }
@@ -68,12 +75,12 @@ class Editor extends React.Component {
     }
 
     render() {
-        const parentBlocs = this.state.note.blocs;
+        const parentBlocs = this.props.noteBlocs;
         const blocs = parentBlocs.map((bloc, i) => {
             return (
                 <EditorBloc 
-                    text={ {__html: bloc} }
-                    mdText={ this.convertToMd(bloc) } 
+                    text={ bloc }
+                    mdText={ this.md.render(bloc) } 
                     onChange={(event) => this.props.checkChange(event, i)} 
                     ref={(inst) => {if(this.props.jumpTo === i) this.refToLast = inst; }} 
                     key={i} 
@@ -83,7 +90,7 @@ class Editor extends React.Component {
         
         return (
             <div className="editor">
-               <input type="text" className="note-editor-title" value={this.props.selectedNote.title} onChange={this.props.checkChangeTitle}></input>
+               <input type="text" className="note-editor-title" value={this.props.noteTitle} onChange={this.props.checkChangeTitle}></input>
                 {blocs}
             </div>
         );
