@@ -17,6 +17,8 @@ The following text is my learning journal from newest to oldest updates.
 
 I spent some time on a bug. The editor wasn't updating correctly the text with dangerouslySetInnerHTML. Turns out that the constructor is only called once. Previously, I set the state in the constructor and didn't touch the state anymore, but that was wrong. I now check if the component is receiving some props, I compare them, and if the component isn't focused, I correctly update the text.
 
+I'll stop for today. Tomorrow I'll consume an API, probably a simple one just to learn how to handle it in React.
+
 ### 16.11.2020 11:30
 
 I changed some styles and did a small break. I will now allow the user to delete text-blocks and notes. Then I'll try and consume an API because I still don't know how to do it in ReactJS, and the project will slowly come to an end.
