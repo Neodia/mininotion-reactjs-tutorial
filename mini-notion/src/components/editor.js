@@ -1,13 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Remarkable } from 'remarkable';
 
-class EditorBloc extends React.Component {    
+class EditorBloc extends React.Component {   
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            text: props.mdText
+        }
+
+        this.onFocus = this.onFocus.bind(this);
+        this.onFocusLeave = this.onFocusLeave.bind(this);
+    }
+
+    onFocus(e) {
+        //  alert(e.target.innerHTML);
+        this.setState({
+            text: this.props.text
+        });
+    }
+
+    onFocusLeave() {
+        this.setState({
+            text: this.props.mdText
+        });
+    }
+    
     render() {
         return (
-            <input type="text" 
-                    onMouseEnter={(e) => {e.target.placeholder = "You can use basic markdown for your notes."}}
-                    onMouseLeave={(e) => {e.target.placeholder = ""}}
-                   value={this.props.value} className="editor-bloc" onChange={this.props.onChange} onKeyDown={(event) => this.props.onKeyPress(event)}></input>
+            <div    data-text="You can use basic markdown for your notes."
+                    contentEditable={true}
+                    dangerouslySetInnerHTML={ this.state.text } 
+                    className="editor-bloc" 
+                    onInput={this.props.onChange}
+                    onFocus={this.onFocus}
+                    onBlur={this.onFocusLeave}
+                    onKeyDown={this.props.onKeyPress}></div>
         );
     }
 }
@@ -16,7 +45,10 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
 
-        // Extract the blocs from the notes later.
+        this.md = new Remarkable();
+        this.md.set({
+            breaks: false
+        })
         this.state = {
             note: this.props.selectedNote,
         }
@@ -31,15 +63,21 @@ class Editor extends React.Component {
         }
     }
 
+    convertToMd(text) {
+        return {__html: this.md.render(text)};
+    }
+
     render() {
         const parentBlocs = this.state.note.blocs;
         const blocs = parentBlocs.map((bloc, i) => {
             return (
-                <EditorBloc value={bloc} 
+                <EditorBloc 
+                    text={ {__html: bloc} }
+                    mdText={ this.convertToMd(bloc) } 
                     onChange={(event) => this.props.checkChange(event, i)} 
                     ref={(inst) => {if(this.props.jumpTo === i) this.refToLast = inst; }} 
                     key={i} 
-                    onKeyPress={(event) => this.props.onEnterPress(event, i)} />
+                    onKeyPress={(event) => this.props.onKeyPress(event, i)} />
             );
         });
         

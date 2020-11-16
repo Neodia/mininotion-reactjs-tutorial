@@ -29,10 +29,10 @@ class Notion extends React.Component {
         this.addNote = this.addNote.bind(this);
         this.checkChange = this.checkChange.bind(this);
         this.checkChangeTitle = this.checkChangeTitle.bind(this);
-        this.onEnterPress = this.onEnterPress.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
     }
 
-    onEnterPress(event, i) {
+    onKeyPress(event, i) {
         if (event.keyCode === 13) {
             let newBlocs = this.state.selected.blocs;
             newBlocs.splice(i + 1, 0, "");
@@ -43,9 +43,10 @@ class Notion extends React.Component {
     }
 
     checkChange(event, i) {
+        // alert( event.target.innerHTML );
         let note = this.state.selected;
         let blocs = note.blocs;
-        blocs[i] = event.target.value;
+        blocs[i] = event.target.textContent;
         note.blocs = blocs;
 
         this.setState({ selected: note }); 
@@ -75,6 +76,7 @@ class Notion extends React.Component {
             <div className="notion">
                 <Navigation key={this.state.notes}
                             notes={this.state.notes} 
+                            selectedNote={this.state.selected}
                             addNote={this.addNote} 
                             onNoteClick={(note) => this.onNoteClick(note)} />
 
@@ -82,7 +84,7 @@ class Notion extends React.Component {
                         selectedNote={this.state.selected}
                         checkChangeTitle={this.checkChangeTitle}
                         checkChange={this.checkChange}
-                        onEnterPress={this.onEnterPress}
+                        onKeyPress={this.onKeyPress}
                         jumpTo={this.jumpTo}
                         resetJumpTo={() => this.jumpTo = null} />
             </div>

@@ -14,7 +14,17 @@ html, body {
     min-height: 100vh;
     background: rgb(247, 246, 243) none repeat scroll 0% 0%;
 
+    color: rgba(55, 53, 47, 0.4) !important;
+    font-size: 11.5px;
+    font-weight: 500;
+
     padding: 10px;
+}
+
+.navigation ul {
+    padding-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .editor {
@@ -27,7 +37,7 @@ html, body {
     display: block;
     width: 80%;
     margin: auto;
-
+    color: rgb(55, 53, 47);
 
     border: none;
 }
@@ -59,13 +69,22 @@ html, body {
     -webkit-appearance:none;
 }
 
-.note {
-    font-size: 14px;
+li {
     list-style-type: none;
-
-    padding: 0px;
-    margin: 0px;
 }
+
+.heavy-note {
+    font-weight: bolder;
+}
+
+[contentEditable=true]:hover:empty:not(:focus):before{
+    content:attr(data-text);
+    color: lightgray !important;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+  }
 
 .navigation-page-header {
     display: flex;

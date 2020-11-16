@@ -13,7 +13,15 @@ The following text is my learning journal from newest to oldest updates.
 
 ## Journal
 
-## 14.11.2020 16:30
+### 16.11.2020 11:30
+
+I changed some styles and did a small break. I will now allow the user to delete text-blocks and notes. Then I'll try and consume an API because I still don't know how to do it in ReactJS, and the project will slowly come to an end.
+
+### 16.11.2020 10:45
+
+It's been now 90 minutes that I started to work again. I stumbled on some problems when transforming the elements to Markdown. The result is not as clean as Notion but it allows to properly modify the markdown and instantly check the result when done modifying.
+
+### 14.11.2020 16:30
 
 We can now change the title and add notes. The text blocks are now prettier (they don't have any border) and the placeholders correctly indicate that we can do Markdown. The markdown isn't implemented yet tho.
 
