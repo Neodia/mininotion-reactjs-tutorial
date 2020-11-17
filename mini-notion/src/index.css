@@ -130,3 +130,10 @@ li {
 input:placeholder-shown {
     color:  rgba(25, 23, 17, 0.6);
 }
+
+.time {
+    width: 15%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}

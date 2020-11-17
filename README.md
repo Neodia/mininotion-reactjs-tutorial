@@ -9,11 +9,25 @@ The goal is to follow the ReactJS tutorial, and then change the code to implemen
 taking system, Notion. This mini version will only allow us to create new note using markdown. The notes won't be stored
 as it will only be a Frontend system.
 
+\[Update\]
+
+The project is done for now. I have now a way better understanding of ReactJS and can understand basic code. The project isn't perfect but it allowed me to properly implement some key features of React to learn.
+
+To try the application, please download the code and type `npm start` in the mini-notion directory.
+
 The following text is my learning journal from newest to oldest updates.
 
 ## Journal
 
-### 16.11.2020
+### 17.11.2020 13:15
+
+This morning I properly consumed an API. It was pretty easy, I just used fetch. The API that I consume just gives a random advice quotes. https://api.adviceslip.com/advice
+
+I set the text for 2 starting pages to properly guide people that come across this project.
+
+This project is done for now.
+
+### 16.11.2020 14:45
 
 I spent some time on a bug. The editor wasn't updating correctly the text with dangerouslySetInnerHTML. Turns out that the constructor is only called once. Previously, I set the state in the constructor and didn't touch the state anymore, but that was wrong. I now check if the component is receiving some props, I compare them, and if the component isn't focused, I correctly update the text.
 

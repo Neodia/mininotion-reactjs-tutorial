@@ -18,15 +18,37 @@ class Notion extends React.Component {
 
         this.lastNoteId = 0;
 
-        let notes = [ newNote(this.lastNoteId++, "Première"), newNote(this.lastNoteId++, "Seconde") ];
-        notes[0].blocs.push("Mon Texte");
-        notes[1].blocs[0] = "Premier";
-        notes[1].blocs.push("Second");
-        notes[1].blocs.push("Troisième");
-        notes[1].blocs.push("Quatrième");
+        // This sets the starting pages of the site.
+        let notes = [ newNote(this.lastNoteId++, "Use Markdown"), newNote(this.lastNoteId++, "Modifying Pages") ];
+        notes[0].blocs = [
+            "# How to",
+            "To change a text block, just click on the text that you want to modify. The text with the tokens will then be showed so you can properly modify your text. When you leave the focus on the text block the text will automatically be converted to markdown.",
+            "You can use all the basic tokens of markdown.",
+            "## Examples",
+            "*Italic*",
+            "**Bold**",
+            "̣~~Strikethrough~~",
+            "```Code```",
+            "- Bullet Point",
+        ];
+
+        notes[1].blocs = [
+            "# Functionalities",
+            "## Add pages",
+            "You can add pages by clicking on the '+' button on the right of the PAGES header.",
+            "## Delete pages",
+            "You can delete a page by clicking on the 'X' button that shows up when hovering on the page on the left.",
+            "## Renaming a page",
+            "When clicking on a page, you can change its title directly on the top of the note.",
+            "## Modifying text-blocks withing a page.",
+            "To **add** a text-block, simply click on a text-block and press enter. The new text-block will be inserted right under.",
+            "To **delete** a text-block, remove all text from it and then press backspace.",
+            "*The empty text-blocks will show a text placeholder when the mouse hovers them.*"
+
+        ];
         this.state = {
             notes: notes,
-            selected: notes[1]
+            selected: notes[0]
         }
 
         this.addNote = this.addNote.bind(this);
@@ -36,25 +58,29 @@ class Notion extends React.Component {
         this.onKeyPress = this.onKeyPress.bind(this);
     }
 
+    spliceSelectedNote(index, amountToDel, replacement=null) {
+        var note = this.state.selected;
+        var newBlocs = note.blocs;
+        if(replacement !== null)
+            newBlocs.splice(index, amountToDel, replacement);
+        else
+            newBlocs.splice(index, amountToDel);
+        note.blocs = newBlocs;
+        this.setState({ selected: note });
+    }
+
     onKeyPress(event, i) {
         if (event.keyCode === 13) {
-            let note = this.state.selected;
-            let newBlocs = note.blocs;
-            newBlocs.splice(i + 1, 0, "");
-            note.blocs = newBlocs;
-            this.setState({ selected: note });
-
+            this.spliceSelectedNote(i + 1, 0, "");
             this.jumpTo = i + 1;
+
+            // Prevent the <br> to be inserted.
             event.preventDefault();
             event.stopPropagation();
             return false;
         } else if (event.keyCode === 8 && event.target.textContent === "") {
-            let note = this.state.selected;
-            let newBlocs = note.blocs;
-            newBlocs.splice(i, 1);
-            note.blocs = newBlocs;
+            this.spliceSelectedNote(i, 1);
             document.activeElement.blur();
-            this.setState({ selected: note });
         }
     }
 
